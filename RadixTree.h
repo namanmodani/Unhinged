@@ -136,9 +136,9 @@ void RadixTree<ValueType>::insert(std::string key, const ValueType& value)
 template <typename ValueType>
 typename RadixTree<ValueType>::RadixNode* RadixTree<ValueType>::searchHelper(typename RadixTree<ValueType>::RadixNode* root, std::string key) const
 {
+    // Location
     if (key == "")
     {
-        // Location
         if (root->val != nullptr)
         {
             return root;
@@ -147,9 +147,9 @@ typename RadixTree<ValueType>::RadixNode* RadixTree<ValueType>::searchHelper(typ
     }
 
     int currChar = key[0];
+    // Unrecognized edge
     if (root->children[currChar] == nullptr)
     {
-        // Unrecognized edge
         return nullptr;
     }
     std::string existingEdge = root->edge[currChar];
