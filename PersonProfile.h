@@ -28,8 +28,10 @@ private:
     std::string m_name;
     std::string m_email;
     int m_countAttValPairs;
-    RadixTree<std::set<std::string>*>* m_rtreeAttVal;
-    std::vector<AttValPair*>* m_attvalVec;
+    // Maps string attributes to set of string values
+    RadixTree<std::set<std::string>*>* m_RadixTreeAttVal;
+    // Vector of all distinct AttValPairs
+    std::vector<AttValPair*>* m_AttValVector;
 };
 
 #endif //PERSONPROFILE_H
