@@ -19,8 +19,11 @@ MatchMaker::~MatchMaker()
 
 std::vector<EmailCount> MatchMaker::IdentifyRankedMatches(std::string email, int threshold) const
 {
+    // Find PersonProfile associated with Email
     const PersonProfile* ppOfInterest = m_MemberDatabase->GetMemberByEmail(email);
 
+    // Find all compatible AttValPairs for each of PersonProfile's own
+    // Set ensures no duplicates
     std::unordered_set<AttValPair, Hash> membersToLookFor;
     for (int i = 0; i != ppOfInterest->GetNumAttValPairs(); i++)
     {
