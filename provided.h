@@ -1,3 +1,10 @@
+//
+// CS 32 Project 4
+// Naman Modani
+// provided.h
+//
+
+
 #ifndef _PROVIDED_H_
 #define _PROVIDED_H_
 

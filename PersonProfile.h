@@ -1,6 +1,9 @@
 //
-// Created by modani on 3/15/22.
+// CS 32 Project 4
+// Naman Modani
+// PersonProfile.h
 //
+
 
 #ifndef PERSONPROFILE_H
 #define PERSONPROFILE_H

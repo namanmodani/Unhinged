@@ -1,5 +1,8 @@
 //
-// Created by modani on 3/15/22.
+// CS 32 Project 4
+// Naman Modani
+// MemberDatabase.cpp
 //
+
 
 #include "MemberDatabase.h"
