@@ -18,7 +18,9 @@ PersonProfile::~PersonProfile()
         std::set<std::string>** attSet = m_RadixTreeAttVal->search((*it)->attribute);
         if (attSet != nullptr)
         {
+            // Always true
             delete (*attSet);
+            // Do not delete the same thing twice
             *attSet = nullptr;
         }
         delete (*it);
