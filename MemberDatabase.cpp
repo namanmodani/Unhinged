@@ -21,6 +21,7 @@ MemberDatabase::~MemberDatabase()
         PersonProfile** pp = m_RadixTreeEmailToProfile->search(*it);
         if (pp != nullptr)
         {
+            // Always true
             delete (*pp);
         }
     }
@@ -29,6 +30,7 @@ MemberDatabase::~MemberDatabase()
         std::vector<std::string>** emails = m_RadixTreeAttValToEmails->search(*it);
         if (emails != nullptr)
         {
+            // Always true
             delete (*emails);
         }
     }
@@ -56,6 +58,7 @@ bool MemberDatabase::LoadDatabase(std::string filename)
             std::getline(databaseFile, email);
             if (m_EmailSet->find(email) != m_EmailSet->end())
             {
+                // Invalid database when member with email already exists
                 return false;
             }
             m_RadixTreeEmailToProfile->insert(email, new PersonProfile(name, email));
