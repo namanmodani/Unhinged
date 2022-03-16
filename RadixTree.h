@@ -25,6 +25,7 @@ private:
 
     struct RadixNode
     {
+        // If lead node, not null
         ValueType* val;
         RadixNode* children[MAX_CHILD_COUNT];
         std::string edge[MAX_CHILD_COUNT];
@@ -58,12 +59,14 @@ RadixTree<ValueType>::RadixTree()
 template <typename ValueType>
 RadixTree<ValueType>::~RadixTree()
 {
+    // If ValueType is already a pointer type, this does not free memory
     delete m_root;
 }
 
 template <typename ValueType>
 void RadixTree<ValueType>::insertHelper(RadixNode* root, std::string key, const ValueType& value)
 {
+    // Nothing matches key, ergo add copy of value
     if (key.empty())
     {
         if (root->val != nullptr)
@@ -75,6 +78,7 @@ void RadixTree<ValueType>::insertHelper(RadixNode* root, std::string key, const 
         return;
     }
 
+    // Key forms own unique edge
     int currChar = key[0];
     if (root->children[currChar] == nullptr)
     {
@@ -91,12 +95,14 @@ void RadixTree<ValueType>::insertHelper(RadixNode* root, std::string key, const 
         matchLen++;
     }
 
+    // Part of key matches entire existing edge
     if (matchLen == existingEdge.length())
     {
         insertHelper(root->children[currChar], key.substr(matchLen), value);
         return;
     }
 
+    // Entire key matches part of existing edge
     if (matchLen == key.length())
     {
         RadixNode* toAdd = new RadixNode;
@@ -108,6 +114,7 @@ void RadixTree<ValueType>::insertHelper(RadixNode* root, std::string key, const 
         return;
     }
 
+    // Part of key matches part of existing edge
     if (matchLen < existingEdge.length() && matchLen < key.length())
     {
         RadixNode* toAdd = new RadixNode;
@@ -131,6 +138,7 @@ typename RadixTree<ValueType>::RadixNode* RadixTree<ValueType>::searchHelper(typ
 {
     if (key == "")
     {
+        // Location
         if (root->val != nullptr)
         {
             return root;
@@ -141,26 +149,32 @@ typename RadixTree<ValueType>::RadixNode* RadixTree<ValueType>::searchHelper(typ
     int currChar = key[0];
     if (root->children[currChar] == nullptr)
     {
+        // Unrecognized edge
         return nullptr;
     }
     std::string existingEdge = root->edge[currChar];
     int len;
+    // Part of key could match entire edge
     if (existingEdge.length() < key.length())
     {
         len = existingEdge.length();
     }
+    // Key could match part of edge or entire edge
     else
     {
         len = key.length();
     }
+    // Part of key does not match part of edge
     if (existingEdge.substr(0, len) != key.substr(0, len))
     {
         return nullptr;
     }
+    // Edge matches part of key, shorten key
     if (existingEdge.size() == len)
     {
         return searchHelper(root->children[currChar], key.substr(existingEdge.size()));
     }
+    // Key does not complete edge
     else
     {
         return nullptr;
