@@ -4,14 +4,29 @@
 // MemberDatabase.h
 //
 
-
 #ifndef MEMBERDATABASE_H
 #define MEMBERDATABASE_H
 
+#include <vector>
+#include <set>
+#include "PersonProfile.h"
+#include "RadixTree.h"
 
-class MemberDatabase {
+struct AttValPair;
 
+class MemberDatabase
+{
+public:
+    MemberDatabase();
+    ~MemberDatabase();
+    bool LoadDatabase(std::string filename);
+    std::vector<std::string> FindMatchingMembers(const AttValPair& input) const;
+    const PersonProfile* GetMemberByEmail(std::string email) const;
+private:
+    RadixTree<PersonProfile*>* m_rtreeEmailToProfile;
+    RadixTree<std::vector<std::string>*>* m_rtreeAttValToEmails;
+    std::set<std::string>* m_emailSet;
+    std::set<std::string>* m_attvalSet;
 };
-
 
 #endif //MEMBERDATABASE_H
