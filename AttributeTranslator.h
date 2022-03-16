@@ -19,10 +19,10 @@ public:
     AttributeTranslator();
     ~AttributeTranslator();
     bool Load(std::string filename);
-    std::vector<AttValPair> findCompatible(const AttValPair& source) const;
+    std::vector<AttValPair> FindCompatibleAttValPairs(const AttValPair& source) const;
 private:
-    RadixTree<std::vector<AttValPair>*>* m_RadixTreePairToPair;
-    std::set<std::string>* m_SourceAttValSet;
+    RadixTree<std::vector<AttValPair>*>* m_RadixTreePairToPair; // tree of attval string to vector of compatible AttValPairs
+    std::set<std::string>* m_SourceAttValSet; // set of attval strings
 };
 
 #endif //ATTRIBUTETRANSLATOR
