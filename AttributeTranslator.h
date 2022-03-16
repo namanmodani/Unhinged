@@ -21,8 +21,10 @@ public:
     bool Load(std::string filename);
     std::vector<AttValPair> FindCompatibleAttValPairs(const AttValPair& source) const;
 private:
-    RadixTree<std::vector<AttValPair>*>* m_RadixTreePairToPair; // tree of attval string to vector of compatible AttValPairs
-    std::set<std::string>* m_SourceAttValSet; // set of attval strings
+    // // Tree of AttVal strings to vector of compatible AttValPairs
+    RadixTree<std::vector<AttValPair>*>* m_RadixTreePairToPair; 
+    // Set of AttVal strings
+    std::set<std::string>* m_SourceAttValSet;
 };
 
 #endif //ATTRIBUTETRANSLATOR
