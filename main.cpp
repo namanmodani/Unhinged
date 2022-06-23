@@ -1,4 +1,4 @@
-//main.cpp
+// main.cpp
 
 #include "PersonProfile.h"
 #include "AttributeTranslator.h"
