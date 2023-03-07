@@ -12,7 +12,7 @@ Software used: C++.
 
 ### Build Instructions
 
-This is how to build SuperPeachSisters in a macOS Terminal window.
+This is how to build Unhinged in a macOS Terminal window.
 
 1. Clone this repository using `$ git clone https://github.com/namanmodani/Unhinged`.
 2. To build the program, change into the Unhinged directory and run program from `main`.
